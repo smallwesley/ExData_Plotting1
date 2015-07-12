@@ -66,7 +66,7 @@ with(subsetDT, lines(Timestamp,
 legend("topright",
        lty= 1,
        col = c("black","red", "blue"), 
-       legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_2"))
+       legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 
 # 5. CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
 dev.off()
