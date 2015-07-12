@@ -23,11 +23,13 @@ projectDF <- read.csv("./household_power_consumption.txt",
                       na.string = "?")
 
 # PROCESS DATA.TABLE USING DPLYR
+if (!"dplyr" %in% installed.packages()){ install.packages("dplyr")} 
 library(dplyr)
 projectDT <- tbl_df(projectDF)
 rm("projectDF")
 
 # PROCESS DATES WITH LUBRIDATE
+if (!"lubridate" %in% installed.packages()){ install.packages("lubridate")}
 library("lubridate")
 
 # FILTER FOR QUALIFIED RECORDS & CREATE NEW TIMESTAMP COLUMN
