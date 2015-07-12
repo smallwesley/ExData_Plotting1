@@ -32,11 +32,16 @@ subsetDT <- projectDT %>%
             filter(Date == "1/2/2007" | Date == "2/2/2007")
 rm("projectDT")
 
-# PLOT ACTIONS 
-# A SET FRAME DEVICE
+# PLOT GENERATION ACTIONS
+
+# 1. INITIALIZE GRAPHIC DEVICE
 png(filename = "plot1.png", width = 480, height = 480)
 
-# CREATING HISTOGRAM GRAPH
+# 2. SET GRAPH PARAMS
+par(mfrow = c(1,1), # SINGLE GRAPH ONLY
+    bg=NA)          # BACKGROUND TRANSPARENT
+
+# 3. GENERATE HISTOGRAM GRAPH
 with(subsetDT,hist(Global_active_power, 
                    col = "red", 
                    main = "Global Active Power", 
@@ -45,3 +50,5 @@ with(subsetDT,hist(Global_active_power,
 # CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
 dev.off()
 
+# CLEAN UP ENVIRONMENT
+remove("subsetDT")

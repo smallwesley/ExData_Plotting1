@@ -37,16 +37,24 @@ subsetDT <-
     mutate(Timestamp = dmy(Date) + hms(Time))
 rm("projectDT")
 
-# PLOT ACTIONS 
-# A SET FRAME DEVICE
+# PLOT GENERATION ACTIONS
+
+# 1. INIETIALIZE GRAPHIC DEVICE
 png(filename = "plot2.png", width = 480, height = 480)
 
-# GENERATE LINE GRAPH
+# 2. SET GRAPH PARAMS
+par(mfrow = c(1,1), # SINGLE GRAPH ONLY
+    bg=NA)          # BACKGROUND TRANSPARENT
+
+# 3. GENERATE LINE GRAPH
 with (subsetDT, plot(Timestamp, 
                      Global_active_power , 
                      type="l",
                      xlab = "",
                      ylab = "Global Active Power (kilowatts)"))
 
-# CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
+# 4. CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
 dev.off()
+
+# CLEAN UP ENVIRONMENT
+remove("subsetDT")

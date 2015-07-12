@@ -37,13 +37,18 @@ subsetDT <-
     mutate(Timestamp = dmy(Date) + hms(Time))
 rm("projectDT")
 
-# PLOT ACTIONS 
-# A SET FRAME DEVICE
+# PLOT GENERATION ACTIONS
+
+# 1. INITIALIZE GRAPHIC DEVICE
 png(filename = "plot4.png", width = 480, height = 480)
 
-# SET UP OUTPUT GRID FOR 4 PLOTS SPREAD TWO BY TWO
-par(mfrow = c(2,2), mar = c(4,4,2,1), oma = c(1, 1, 1, 1))
+# 2. CONFIGURE GRAPH PARAMETERS
+par(mfrow = c(2,2),        # SET 2 by 2 GRID
+    mar = c(4,4,2,1),      # SET MARGINS PER GRAPH
+    oma = c(1, 1, 1, 1),   # SET OUTER MARGINS
+    bg=NA)                 # BACKGROUND TRANSPARENT
 
+# 3. GENERATE PLOTS
 # PLOT 1: UPPER LEFT
 with (subsetDT, plot(Timestamp, 
                      Global_active_power , 
@@ -86,3 +91,6 @@ with (subsetDT, plot(Timestamp,
 
 # CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
 dev.off()
+
+# CLEAN UP ENVIRONMENT
+remove("subsetDT")

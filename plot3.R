@@ -37,11 +37,16 @@ subsetDT <-
     mutate(Timestamp = dmy(Date) + hms(Time))
 rm("projectDT")
 
-# PLOT ACTIONS 
-# A SET FRAME DEVICE
+# PLOT GENERATION ACTIONS
+
+# 1. INITIALIZE GRAPHIC DEVICE
 png(filename = "plot3.png", width = 480, height = 480)
 
-# PERFORM MULTIPLE PLOTS ON SAME GRAPH
+# 2. SET GRAPH PARAMS
+par(mfrow = c(1,1), # SINGLE GRAPH ONLY
+    bg=NA)          # BACKGROUND TRANSPARENT
+
+# 3. GENERATE MULTIPLE LINE PLOTS WITHIN SINGLE GRAPH
 with(subsetDT, plot(Timestamp, 
                      Sub_metering_1, 
                      type="l",
@@ -55,13 +60,14 @@ with(subsetDT, lines(Timestamp,
                      Sub_metering_3, 
                      col = "blue"))
 
-# CREATE LEGEND
+# 4. CREATE LEGEND
 legend("topright",
        lty= 1,
        col = c("black","red", "blue"), 
        legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_2"))
 
-# CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
+# 5. CLOSE PNG DEVICE; WRITE GRAPHIC FILE TO WORKING DIRECTORY
 dev.off()
 
-
+# CLEAN UP ENVIRONMENT
+remove("subsetDT")
